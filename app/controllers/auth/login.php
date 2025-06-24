@@ -15,7 +15,7 @@
 
 <?php
 session_start();
-include 'db.php';
+include_once __DIR__ . '/../../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST['username'];
@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($result->num_rows === 1) {
     $_SESSION['user'] = $username;
-    header("Location: index.php");
+    header("Location: ../../views/dashboard.php");
+    exit();
   } else {
     $error = "Credenciales incorrectas.";
   }
@@ -43,48 +44,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827;
+            background-color: #111;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<body class="min-h-screen bg-black flex items-center justify-center py-12 px-4">
     <div class="max-w-md w-full space-y-8">
-        <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
-                Iniciar Sesión
-            </h2>
+        <div class="text-center">
+            <h2 class="mt-6 text-3xl font-extrabold text-white">Bienvenido</h2>
+            <p class="mt-2 text-yellow-500 text-lg font-semibold">Panel de Proyectos</p>
         </div>
         <form class="mt-8 space-y-6" method="post">
             <?php if(isset($error)): ?>
-                <div class="bg-red-500 text-white p-3 rounded-md text-sm text-center">
+                <div class="bg-red-600 text-white p-3 rounded-md text-sm text-center">
                     <?php echo $error; ?>
                 </div>
             <?php endif; ?>
-            
-            <div class="rounded-md shadow-sm -space-y-px">
+            <div class="rounded-md shadow-sm space-y-4">
                 <div>
-                    <label for="username" class="sr-only">Usuario</label>
+                    <label for="username" class="block text-gray-300 mb-1">Usuario</label>
                     <input id="username" name="username" type="text" required 
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 
-                                  placeholder-gray-500 text-white bg-gray-800 rounded-t-md focus:outline-none 
-                                  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-                           placeholder="Usuario">
+                        class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-500 focus:ring-yellow-500" 
+                        placeholder="Usuario">
                 </div>
                 <div>
-                    <label for="password" class="sr-only">Contraseña</label>
+                    <label for="password" class="block text-gray-300 mb-1">Contraseña</label>
                     <input id="password" name="password" type="password" required 
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 
-                                  placeholder-gray-500 text-white bg-gray-800 rounded-b-md focus:outline-none 
-                                  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-                           placeholder="Contraseña">
+                        class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-500 focus:ring-yellow-500" 
+                        placeholder="Contraseña">
                 </div>
             </div>
-
             <div>
                 <button type="submit" 
-                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm 
-                               font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none 
-                               focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                    class="w-full flex justify-center py-2 px-4 rounded text-black font-semibold bg-yellow-500 hover:bg-yellow-600 transition">
                     Iniciar Sesión
                 </button>
             </div>
