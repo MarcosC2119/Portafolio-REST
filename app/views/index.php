@@ -24,7 +24,7 @@ $is_auth_page = false; // This is important to ensure public nav links show up
 
     <section id="inicio" class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-8 py-24">
         <div class="md:w-1/2 space-y-6">
-            <p class="text-lg text-gray-300">Hola, soy <span class="font-bold">Tu Nombre</span>.</p>
+            <p class="text-lg text-gray-300">Hola, soy <span class="font-bold">Marcos Castro Vergara</span>.</p>
             <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">Diseñador. Desarrollador. Creador.</h1>
             <p class="text-gray-400 text-lg">Apasionado por crear productos digitales que impactan positivamente.</p>
             <p class="text-gray-400 text-lg">Aquí puedes ver mis proyectos y experiencia.</p>
@@ -52,7 +52,7 @@ $is_auth_page = false; // This is important to ensure public nav links show up
                         la funcionalidad, comprometido con la entrega de proyectos de alta calidad.
                     </p>
                     <div class="mt-6 text-center md:text-left">
-                        <a href="<?= BASE_URL ?>assets/docs/tu_cv.pdf" download class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-3 rounded-lg inline-flex items-center transition-colors duration-300">
+                        <a href="<?= BASE_URL ?>app/uploads/CV.pdf" download class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-3 rounded-lg inline-flex items-center transition-colors duration-300">
                             <i class="fas fa-download mr-2"></i> Descargar CV
                         </a>
                     </div>
@@ -123,17 +123,17 @@ $is_auth_page = false; // This is important to ensure public nav links show up
                 <div class="text-center mb-8 md:mb-0">
                     <i class="fas fa-envelope text-yellow-500 text-5xl mb-3"></i>
                     <p class="text-xl font-semibold text-white">Email</p>
-                    <a href="mailto:tu.correo@example.com" class="text-gray-300 hover:text-yellow-500">tu.correo@example.com</a>
+                    <a href="mcastro211973@gmail.com" class="text-gray-300 hover:text-yellow-500">mcastro211973@gmail.com</a>
                 </div>
                 <div class="text-center mb-8 md:mb-0">
                     <i class="fab fa-whatsapp text-yellow-500 text-5xl mb-3"></i>
                     <p class="text-xl font-semibold text-white">WhatsApp</p>
-                    <a href="https://wa.me/XXXXXXXXX" target="_blank" class="text-gray-300 hover:text-yellow-500">+56 9 XXXXXXXX</a>
+                    <a href="https://wa.me/+56973644896" target="_blank" class="text-gray-300 hover:text-yellow-500">+56 9 73644896</a>
                 </div>
                 <div class="text-center">
                     <i class="fab fa-github text-yellow-500 text-5xl mb-3"></i>
                     <p class="text-xl font-semibold text-white">GitHub</p>
-                    <a href="https://github.com/tu_usuario_github" target="_blank" class="text-gray-300 hover:text-yellow-500">tu_usuario_github</a>
+                    <a href="https://github.com/MarcosC2119" target="_blank" class="text-gray-300 hover:text-yellow-500">MarcosC2119</a>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 include_once __DIR__ . '/../../config.php'; // Corrected path to app/config.php
 session_start(); // Start session immediately after config
 
+
 // If already authenticated, redirect to dashboard
 if (isset($_SESSION['user'])) {
     // Corrected redirection path: point to the actual dashboard view

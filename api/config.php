@@ -4,9 +4,9 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, DELETE");
 
 $host = "localhost";
-$db = "portafolio_db";
-$user = "root";
-$pass = "";
+$db = "marcos_castro_db1";
+$user = "marcos_castro";
+$pass = "marcos_castro2025";
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {

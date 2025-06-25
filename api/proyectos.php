@@ -7,11 +7,27 @@ header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $method = $_SERVER['REQUEST_METHOD'];
-$pathInfo = isset($_SERVER['PATH_INFO']) ? trim($_SERVER['PATH_INFO'], '/') : '';
-$id = ($pathInfo !== '') ? intval(explode('/', $pathInfo)[0]) : null;
+$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : null;
+
+// --- INICIO DE LA LÓGICA DE TUNELIZACIÓN ---
+// Si la petición es POST, revisamos si se quiere simular otro método.
+if ($method == 'POST' && isset($_POST['_method'])) {
+    $method = strtoupper($_POST['_method']); // Puede ser 'PATCH' o 'DELETE'
+}
+// --- FIN DE LA LÓGICA DE TUNELIZACIÓN ---
 
 function getInput() {
-    return json_decode(file_get_contents("php://input"), true);
+    $input = json_decode(file_get_contents("php://input"), true);
+    // Si la entrada JSON está vacía (como en un POST de formulario), usamos $_POST
+    if (empty($input)) {
+        return $_POST;
+    }
+    return $input;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(204);
+    exit();
 }
 
 switch ($method) {
@@ -32,7 +48,7 @@ switch ($method) {
         }
         break;
 
-    case 'POST':
+    case 'POST': // Esto es solo para crear nuevos proyectos
         $d = getInput();
         $stmt = $conn->prepare("INSERT INTO proyectos (titulo, descripcion, url_github, url_produccion, imagen) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $d['titulo'], $d['descripcion'], $d['url_github'], $d['url_produccion'], $d['imagen']);
@@ -40,20 +56,29 @@ switch ($method) {
         echo json_encode(["success"=>true,"id"=>$stmt->insert_id]);
         break;
 
-    case 'PATCH':
+    case 'PATCH': // Se activa a través del método POST + _method=PATCH
         if (!$id) {
             http_response_code(400);
-            echo json_encode(["error"=>"ID requerido"]);
+            echo json_encode(["error"=>"ID requerido para actualizar"]);
             break;
         }
         $d = getInput();
         $fields = [];
         $types = '';
         $values = [];
-        foreach ($d as $k => $v) {
-            $fields[] = "$k=?";
-            $types .= 's';
-            $values[] = $v;
+        // Campos permitidos para evitar inyección de campos no deseados
+        $allowed_fields = ['titulo', 'descripcion', 'url_github', 'url_produccion', 'imagen'];
+        foreach ($allowed_fields as $field) {
+            if (isset($d[$field])) {
+                $fields[] = "$field=?";
+                $types .= 's';
+                $values[] = $d[$field];
+            }
+        }
+        if (empty($fields)) {
+            http_response_code(400);
+            echo json_encode(["error"=>"No hay campos para actualizar"]);
+            break;
         }
         $types .= 'i';
         $values[] = $id;
@@ -64,21 +89,16 @@ switch ($method) {
         echo json_encode(["success"=>true]);
         break;
 
-    case 'DELETE':
+    case 'DELETE': // Se activa a través del método POST + _method=DELETE
         if (!$id) {
             http_response_code(400);
-            echo json_encode(["error"=>"ID requerido"]);
+            echo json_encode(["error"=>"ID requerido para eliminar"]);
             break;
         }
         $stmt = $conn->prepare("DELETE FROM proyectos WHERE id=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         echo json_encode(["success"=>true]);
-        break;
-
-    case 'OPTIONS':
-        // Preflight CORS
-        http_response_code(204);
         break;
 
     default:

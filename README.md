@@ -13,6 +13,35 @@ DEMO: https://teclab.uct.cl/~marcos.castro/DB/login.php
 - Panel de administración seguro
 - Base de datos MySQL para almacenamiento persistente
 - API REST para gestión de proyectos
+- **Estilos y estructura generados con asistencia de IA**
+
+## 🤖 Uso de IA en el Proyecto
+
+La inteligencia artificial (GitHub Copilot) fue utilizada para:
+- Generar y optimizar los estilos visuales con Tailwind CSS
+- Sugerir estructuras de navegación y menús condicionales
+- Mejorar la experiencia de usuario y la accesibilidad
+
+**Ejemplo de prompt utilizado:**
+> "Genera un header moderno y responsivo con Tailwind CSS para un portafolio personal."
+
+**Ejemplo de código generado:**
+```php
+<nav class="bg-black fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Menú izquierdo -->
+            <div class="flex items-center space-x-8">
+                <a href="<?= BASE_URL ?>" class="text-lg font-semibold text-yellow-500">Inicio</a>
+                <a href="#about" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Sobre Mí</a>
+                <!-- ...otros enlaces... -->
+            </div>
+        </div>
+    </div>
+</nav>
+```
+
+Más detalles y ejemplos en el archivo [`IA.md`](IA.md).
 
 ## 📋 Requisitos Previos
 
@@ -125,7 +154,8 @@ Portafolio-REST/
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
 
-## ✨ Créditos
+## ✨ Créditos y Transparencia
 
-Desarrollado con asistencia de:
-- GitHub Copilot
+Desarrollado por Marcos Castro con asistencia de:
+- GitHub Copilot (IA para generación de estilos y estructura)
+- Ver detalles y ejemplos en [`IA.md`](IA.md)

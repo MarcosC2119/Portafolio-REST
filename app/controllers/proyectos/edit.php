@@ -3,12 +3,14 @@
 include_once __DIR__ . '/../../config.php'; // Include app/config.php
 
 $id=intval($_GET['id']);
-// Use BASE_URL for the absolute API endpoint
-$json=file_get_contents(BASE_URL . "api/proyectos.php/$id");
+// La petición inicial para obtener datos no cambia, sigue siendo GET
+$json=file_get_contents(BASE_URL . "api/proyectos.php?id=$id");
 $p=json_decode($json,true);
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
   $data = [
+    '_method' => 'PATCH', // --- CAMBIO CLAVE: Indicamos que es una actualización ---
+    'id' => $id, // Pasamos el ID en el cuerpo de la petición
     'titulo'=>$_POST['titulo'],
     'descripcion'=>$_POST['descripcion'],
     'url_github'=>$_POST['url_github'],
@@ -16,25 +18,24 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
   ];
   if (!empty($_FILES['imagen']['name'])) {
     $img=$_FILES['imagen']['name'];
-    // Correct path for uploading images to app/uploads/
     $upload_dir = __DIR__ . '/../../uploads/';
     if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0755, true); // Create directory if it doesn't exist
+        mkdir($upload_dir, 0755, true);
     }
     move_uploaded_file($_FILES['imagen']['tmp_name'], $upload_dir . $img);
     $data['imagen']=$img;
   }
-  // Use BASE_URL for the absolute API endpoint
-  $ch=curl_init(BASE_URL . "api/proyectos.php/$id");
+
+  // --- CAMBIO CLAVE: Usamos POST en lugar de PATCH ---
+  $ch=curl_init(BASE_URL . "api/proyectos.php");
   curl_setopt_array($ch,[
-    CURLOPT_CUSTOMREQUEST=>'PATCH',
-    CURLOPT_HTTPHEADER=>['Content-Type: application/json'],
-    CURLOPT_RETURNTRANSFER=>true,
-    CURLOPT_POSTFIELDS=>json_encode($data)
+    CURLOPT_POST => true, // Usamos POST
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POSTFIELDS => http_build_query($data) // Enviamos datos como application/x-www-form-urlencoded
   ]);
   curl_exec($ch);
   curl_close($ch);
-  header("Location: index.php"); // This relative path is fine
+  header("Location: " . BASE_URL . "app/views/dashboard.php");
   exit;
 }
 ?>
