@@ -2,7 +2,7 @@
 
 Este es un sistema web para gestionar y mostrar un portafolio personal de proyectos. Permite a los administradores agregar, editar y eliminar proyectos, incluyendo detalles como título, descripción, enlaces a GitHub y producción, e imágenes.
 
-DEMO: https://teclab.uct.cl/~marcos.castro/DB/login.php
+DEMO: https://teclab.uct.cl/~marcos.castro/Portafolio-REST/app/views/index.php
 
 ## 🚀 Características
 
