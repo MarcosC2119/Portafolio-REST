@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteBase /UCT/Portafolio-Final/Portafolio-REST/
+
+# Reglas para URLs amigables
+RewriteRule ^login/?$ app/controllers/auth/login.php [NC,L]
+RewriteRule ^logout/?$ app/controllers/auth/logout.php [NC,L]
+RewriteRule ^dashboard/?$ app/views/dashboard.php [NC,L]
+
+# API no necesita reescritura, se accede directamente
+RewriteRule ^api/ - [L]
+
+# Permitir acceso a archivos y directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Configurar tipos MIME
+AddType application/json .json
+AddType text/css .css
+AddType application/javascript .js
+
+# Configurar CORS para la API
+<Files "api/*">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</Files> 

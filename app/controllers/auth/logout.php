@@ -1,17 +1,10 @@
-/**
- * Cierre de Sesión
- * 
- * Este archivo maneja la funcionalidad de cierre de sesión del usuario.
- * Características:
- * - Destrucción de la sesión actual
- * - Redirección a la página de inicio de sesión
- * 
- * @author Marcos Castro
- * @version 1.0
- */
-
 <?php
 session_start();
+// Incluir config para tener BASE_URL
+include_once __DIR__ . '/../../config.php';
+
 session_destroy();
-header("Location: login.php");
+// RUTA CORREGIDA: Usar la ruta completa desde BASE_URL
+header("Location: " . BASE_URL . "app/controllers/auth/login.php");
+exit();
 ?>
