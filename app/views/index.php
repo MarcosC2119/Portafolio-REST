@@ -1,6 +1,10 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 include_once __DIR__ . '/../config.php'; // Incluir config.php
+
+// Define variable for header to indicate this is a public page
+$is_dashboard_page = false;
+$is_auth_page = false; // This is important to ensure public nav links show up
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -114,7 +118,7 @@ include_once __DIR__ . '/../config.php'; // Incluir config.php
     <section id="contact" class="py-20 px-4 bg-gray-900">
         <div class="max-w-4xl mx-auto text-gray-200">
             <h2 class="text-4xl font-bold text-white mb-10 text-center">Contáctame</h2>
-            
+
             <div class="flex flex-col md:flex-row justify-center items-center md:space-x-12 mb-12">
                 <div class="text-center mb-8 md:mb-0">
                     <i class="fas fa-envelope text-yellow-500 text-5xl mb-3"></i>

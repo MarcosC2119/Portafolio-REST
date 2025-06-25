@@ -1,10 +1,15 @@
 <?php
-// Ensure BASE_URL is defined
+// Ensure BASE_URL is defined and session is started
 include_once __DIR__ . '/../../config.php'; // Include app/config.php
+session_start();
 
 // Use BASE_URL for the absolute API endpoint
 $json = file_get_contents(BASE_URL . 'api/proyectos.php');
 $proyectos = json_decode($json, true);
+
+// Define variables for header to indicate the context
+$is_dashboard_page = true; // This is essentially the project management page, part of the dashboard
+$is_auth_page = false;
 ?>
 <!DOCTYPE html>
 <html lang="es">

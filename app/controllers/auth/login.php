@@ -1,11 +1,12 @@
 <?php
-session_start();
 // Ensure config.php is included at the very beginning to define BASE_URL and $conn
 include_once __DIR__ . '/../../config.php'; // Corrected path to app/config.php
+session_start(); // Start session immediately after config
 
-// Si ya está autenticado, redirigir al dashboard
+// If already authenticated, redirect to dashboard
 if (isset($_SESSION['user'])) {
-    header('Location: ' . BASE_URL . 'dashboard');
+    // Corrected redirection path: point to the actual dashboard view
+    header('Location: ' . BASE_URL . 'app/views/dashboard.php');
     exit();
 }
 
@@ -27,12 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows === 1) {
         $_SESSION['user'] = $username;
-        header('Location: ' . BASE_URL . 'dashboard');
+        // Corrected redirection path: point to the actual dashboard view
+        header('Location: ' . BASE_URL . 'app/views/dashboard.php');
         exit();
     } else {
         $error = "Credenciales incorrectas.";
     }
 }
+// Define a variable to indicate the context for the header
+$is_auth_page = true;
 // Incluir header
 include __DIR__ . '/../../views/includes/header.php';
 ?>

@@ -3,9 +3,11 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 // RUTA CORREGIDA: Apunta a app/config.php desde app/views/dashboard.php
 include_once __DIR__ . '/../config.php'; //
 if (!isset($_SESSION['user'])) {
-    header('Location: ' . BASE_URL . 'app/controllers/auth/login.php');
+    header('Location: ' . BASE_URL . 'app/controllers/auth/login.php'); // Explicitly redirect to login controller
     exit();
 }
+// Define a variable to indicate the context for the header
+$is_dashboard_page = true;
 ?>
 <?php include 'includes/header.php'; ?>
 
