@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 // Ensure config.php is included at the very beginning to define BASE_URL and $conn
@@ -37,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Incluir header
 include __DIR__ . '/../../views/includes/header.php';
 ?>
-<div class="min-h-screen flex items-center justify-center py-12 px-4">
-    <div class="max-w-md w-full space-y-8">
+<div class="min-h-screen flex items-center justify-center py-12 px-4 bg-black">
+    <div class="max-w-md w-full space-y-8 p-8 bg-gray-900 rounded-lg shadow-xl">
         <div class="text-center">
-            <h2 class="mt-6 text-3xl font-extrabold text-white">Bienvenido</h2>
-            <p class="mt-2 text-yellow-500 text-lg font-semibold">Panel de Proyectos</p>
+            <h2 class="mt-6 text-4xl font-extrabold text-white">Bienvenido</h2>
+            <p class="mt-2 text-yellow-500 text-xl font-semibold">Panel de Proyectos</p>
         </div>
         <form class="mt-8 space-y-6" method="post">
             <?php if($error): ?>
@@ -51,21 +50,21 @@ include __DIR__ . '/../../views/includes/header.php';
             <?php endif; ?>
             <div class="rounded-md shadow-sm space-y-4">
                 <div>
-                    <label for="username" class="block text-gray-300 mb-1">Usuario</label>
+                    <label for="username" class="block text-gray-300 mb-2 text-lg">Usuario</label>
                     <input id="username" name="username" type="text" required
-                        class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-500 focus:ring-yellow-500"
-                        placeholder="Usuario">
+                        class="appearance-none relative block w-full px-4 py-3 border border-gray-700 placeholder-gray-500 text-white rounded-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-gray-800 text-lg"
+                        placeholder="admin">
                 </div>
                 <div>
-                    <label for="password" class="block text-gray-300 mb-1">Contraseña</label>
+                    <label for="password" class="block text-gray-300 mb-2 text-lg">Contraseña</label>
                     <input id="password" name="password" type="password" required
-                        class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-500 focus:ring-yellow-500"
-                        placeholder="Contraseña">
+                        class="appearance-none relative block w-full px-4 py-3 border border-gray-700 placeholder-gray-500 text-white rounded-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-gray-800 text-lg"
+                        placeholder="admin123">
                 </div>
             </div>
             <div>
                 <button type="submit"
-                    class="w-full flex justify-center py-2 px-4 rounded text-black font-semibold bg-yellow-500 hover:bg-yellow-600 transition">
+                    class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-black bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition duration-300 ease-in-out">
                     Iniciar Sesión
                 </button>
             </div>

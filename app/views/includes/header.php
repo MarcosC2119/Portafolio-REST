@@ -40,10 +40,10 @@ include_once __DIR__ . '/../../config.php';
             <div class="flex items-center justify-between h-16">
                 <!-- Menú izquierdo -->
                 <div class="flex items-center space-x-8">
-                    <a href="index.php" class="text-lg font-semibold text-yellow-500">Home</a>
-                    <a href="#about" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">About</a>
-                    <a href="#work" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Work</a>
-                    <a href="#writing" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Writing</a>
+                    <a href="index.php" class="text-lg font-semibold text-yellow-500">Inicio</a>
+                    <a href="#about" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Sobre Mí</a>
+                    <a href="#skills" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Habilidades</a>
+                    <a href="#work" class="text-lg font-medium text-gray-200 hover:text-yellow-500 transition">Proyectos</a>
                 </div>
                 <!-- Menú derecho -->
                 <div class="flex items-center space-x-8">
